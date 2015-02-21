@@ -10,9 +10,8 @@ var mongoose = require('mongoose'),
  * Proyecto Schema
  */
 var ProyectoSchema = new Schema({
-	nombre: {
-		type: String,
-		default: '',
+	name: {
+		type: String,		
 		required: 'Por favor llenar el nombre del proyecto',
 		trim: true
 	},
@@ -24,13 +23,13 @@ var ProyectoSchema = new Schema({
 	},
 	beneficiados: [{
 		type: String,
-		default: '',
-		required: 'Favor llenar los beneficiados del proyecto',
+		default: '',		
 		trim:  true
 	}],
 	fecha_inicio: {
 		type: Date,
-		required: 'Favor llenar la fecha de inicio del proyecto'
+		required: 'Favor llenar la fecha de inicio del proyecto',
+		default: Date.now
 	},
 	meses_estimados: {
 		type: Number,
@@ -74,6 +73,10 @@ var ProyectoSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	imagen: {
+		type: String,
+		trim:''
 	}
 });
 

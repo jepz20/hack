@@ -40,13 +40,11 @@ var ContribuyenteSchema = new Schema({
 			trim: true
 		},
 	},
-	telefonos:
-		[{
+	telefonos:[{
 			type: String,
 			trim: true,
 			maxLength: 8
-		}]
-	,
+		}],
 	rtn:{
 		type: String,
 		trim: true

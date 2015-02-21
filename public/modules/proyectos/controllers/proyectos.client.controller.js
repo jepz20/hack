@@ -9,7 +9,11 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		$scope.create = function() {
 			// Create new Proyecto object
 			var proyecto = new Proyectos ({
-				name: this.name
+				name: this.name,
+				descripcion: this.descripcion,
+				meses_estimado: this.meses_estimado,
+				presupuesto: this.presupuesto,
+				localizacion_texto: this.localizacion_texto
 			});
 
 			// Redirect after save

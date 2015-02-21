@@ -9,7 +9,8 @@ angular.module('contribuyentes').controller('ContribuyentesController', ['$scope
 		$scope.create = function() {
 			// Create new Contribuyente object
 			var contribuyente = new Contribuyentes ({
-				name: this.name
+				name: this.name,
+				direccion: this.direccion	
 			});
 
 			// Redirect after save
