@@ -1,0 +1,19 @@
+<section data-ng-controller="ProyectosController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Proyectos</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="proyecto in proyectos" data-ng-href="#!/proyectos/{{proyecto._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="proyecto.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="proyecto.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="proyecto.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!proyectos.$resolved || proyectos.length">
+    	No Proyectos yet, why don't you <a href="/#!/proyectos/create">create one</a>?
+    </div>
+</section>
