@@ -25,12 +25,12 @@ var ContribuyenteSchema = new Schema({
 		ref: 'User'
 	},
 	direccion:{
-		Ciudad:{
+		ciudad:{
 			type: String,
 			trim: true,
 			required: 'favor ingrese su ciudad'
 		},
-		Barrio:{
+		barrio:{
 			type: String,
 			trim: true,
 			required: 'favor ingrese el barrio en el que vive.'
@@ -50,13 +50,16 @@ var ContribuyenteSchema = new Schema({
 	pagos: [{
 		tipo_impuesto:{
 			type: String,
-			trim: true
+			trim: true,
+			required: 'favor ingrese el tipo de impuesto'
 		},
 		valor_impuesto:{
-			type: Number
+			type: Number,
+			required: 'favor ingrese el valor de impuesto'
 		},
 		anio: {
-			type: Number	
+			type: Number,
+			required: 'favor ingrese el año'	
 		},
 		fechaPago:{
 			type: Date,
@@ -64,9 +67,8 @@ var ContribuyenteSchema = new Schema({
 		},
 		valorPago:{
 			type: Number
-		}
-
-
+		},
+		
 	}]
 
 });
