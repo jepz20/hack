@@ -90,7 +90,7 @@ exports.list = function(req, res) {
 exports.contribuyenteByID = function(req, res, next, id) { 
 	Contribuyente.findById(id).populate('user', 'displayName').exec(function(err, contribuyente) {
 		if (err) return next(err);
-		if (! contribuyente) return next(new Error('Failed to load Contribuyente ' + id));
+		if (! contribuyente) return next(new Error('Falla en la carga de Contribuyente ' + id));
 		req.contribuyente = contribuyente ;
 		next();
 	});
@@ -105,3 +105,13 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+exports.proyectosContribuidos = function(req, res, next, id) {
+	// encontrar ID de usuario
+	Proyectos.find({user: id}).populate('').exec(function(err, proyecto) {
+		if (err) return next(err);
+		if (! proyecto) return next(new Error('Falla en la carga de Proyecto ' + id));
+		req.proyecto = proyecto;
+		next();
+	});
+}

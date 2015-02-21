@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Proyecto Schema
  */
 var ProyectoSchema = new Schema({
-	nombre: {
+	name: {
 		type: String,
 		default: '',
 		required: 'Por favor llenar el nombre del proyecto',
@@ -25,7 +25,6 @@ var ProyectoSchema = new Schema({
 	beneficiados: [{
 		type: String,
 		default: '',
-		required: 'Favor llenar los beneficiados del proyecto',
 		trim:  true
 	}],
 	fecha_inicio: {
@@ -42,6 +41,15 @@ var ProyectoSchema = new Schema({
 		default: 0,
 		required: 'Favor llenar el proyectoresupuesto del proyecto'
 	},
+	monto_requerido: {
+		type: Number,
+		default: 0,
+		required: 'Favor llenar el monto requerido del proyecto'
+	},
+	monto_contribuido: {
+		type: Number,
+		default: 0
+	},
 	localizacion_texto: {
 		type: String,
 		default: '',
@@ -51,6 +59,10 @@ var ProyectoSchema = new Schema({
 		type: String,
 		default: ''
 	},
+	imagenes: [{
+		type: String,
+		default: ''
+	}],
 	actualizaciones: [{
 		fecha_actualizacion: {
 			type: Date,
@@ -62,7 +74,7 @@ var ProyectoSchema = new Schema({
 			required: 'Favor llenar descripcion de actualizacion',
 			trim: true
 		},
-		imagenes_actualizacion: {
+		url_imagen: {
 			type: String,
 			trim: true
 		}
