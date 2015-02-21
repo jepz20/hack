@@ -47,6 +47,10 @@ var ContribuyenteSchema = new Schema({
 			maxLength: 8
 		}]
 	,
+	rtn:{
+		type: String,
+		trim: true
+	},
 	pagos: [{
 		tipo_impuesto:{
 			type: String,
