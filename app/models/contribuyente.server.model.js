@@ -67,8 +67,8 @@ var ContribuyenteSchema = new Schema({
 		},
 		valorPago:{
 			type: Number
-		},
-		
+		}
+
 	}]
 
 });
