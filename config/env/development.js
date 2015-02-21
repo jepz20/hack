@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/maraton-dev',
+	db: 'mongodb://192.168.1.25/maraton-dev',
 	app: {
 		title: 'Maraton - Development Environment'
 	},
