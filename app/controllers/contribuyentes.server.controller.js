@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Contribuyentes
  */
 exports.list = function(req, res) { 
-	Contribuyente.find().sort('-created').populate('user', 'displayName', 'proyectos_contribuidos').exec(function(err, contribuyentes) {
+	Contribuyente.find().sort('-created').populate('user', 'displayName', 'proyectos_contribuidos', 'pagos').exec(function(err, contribuyentes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
