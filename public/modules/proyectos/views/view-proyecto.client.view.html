@@ -1,10 +1,11 @@
-<section data-ng-controller="ProyectosController" data-ng-init="findOne()"  >
-<div  class="bg-primary container-fluid">
-		<div class="container" style="color:#000000;">
+<section data-ng-controller="ProyectosController" data-ng-init="findOne()" sytle="background:#E3EAEB" >
+<div class="fondoGris">
+<button class="btn btn-default" ng-click="irActualizacion()">Actua</button>
+		<div class="container">
 			<h3>{{proyecto.name}}</h3>
 		</div>
 
-		<div  class="container">
+		<div class="container fondoGris">
 
 			<div class="col-lg-7 col-md-6">
 				<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">

@@ -130,7 +130,13 @@ exports.agregarProyecto = function(req, res) {
 						message: 'Proyecto ya ha sido elegido anteriormente'
 					});
 				} else {
+					var totalPago = 0
 					contribuyente.proyectos_contribuidos.push(req.body.proyectoId);
+					for (var i = contribuyente.pagos.length - 1; i >= 0; i--) {
+						totalPago = contribuyente.pagos[i].valor_impuesto + totalPago;
+					};
+
+					contribuyente.pagos = []
 					contribuyente.save(function(err) {
 						if (err) {
 							return res.status(400).send({
@@ -138,7 +144,7 @@ exports.agregarProyecto = function(req, res) {
 							});
 						} else {
 							Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
-
+								proyecto.monto_contribuido = totalPago *.4;
 								proyecto.contribuyentes.push(req.body.contribuyenteId);
 								proyecto.save(function() {
 									res.jsonp('Success: true');

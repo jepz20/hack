@@ -1,36 +1,5 @@
-<section data-ng-controller="ProyectosController" data-ng-init="find()" ng-show="!authentication.user||!authentication.user.contribuyente">
-<h2>Proyectos en los que impuestos pueden ayudar</h2>
-<br/>
-<br/>
-<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="proyecto in proyectos" ng-click="ir($index)">
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <form action="">                    
-                        <label for="option" class="categoriaProyecto text-uppercase">{{proyecto.categoria}}:</label>            
-                        <img src="/modules/proyectos/img/{{proyecto._id}}.jpg" class="img-responsive" alt="">
-                        <label for="option" class="tituloProyecto">{{proyecto.name}}</label><br/>
-                        <label for="" class="descripcionProyecto">{{proyecto.descripcion | limitTo:300}}{{proyecto.descripcion.length > 20 ? '...' : ''}}</label><br></br>
-                        <label for="">Lps.{{proyecto.presupuesto | number : 2}}</label><br/>
-                        <div class="progress" style="margin-bottom:0">
-                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100}}%">
-                            {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}%</div>
-                        </div>
-                            <span class="pull-right">                           
-                                <label for="" class="fechaProyecto">Número de contribuyentes: 500</label>
-                            </span>
-                            <span class="pull-left">                            
-                                <label for="" class="fechaProyecto">Meses Estimados: {{proyecto.meses_estimados}}</label>
-                            </span>
-                    </form>
-                </td>
-            </tr>   
-        </table>
-    </div>
-</section>
-
-
 <section data-ng-controller="ContribuyentesController" data-ng-init="findContribuyente()" ng-show="authentication.user&&authentication.user.contribuyente">	
+<div ng-show="contribuyente.pagos">
 	<h2> Impuesto Pendientes de Pago </h2>
     <table class="table table-striped table-hover table-bordered">
         <tr class="info">
@@ -46,6 +15,8 @@
             <td class="">{{pago.valor_impuesto}}</td>            
         </tr>
     </table>    
+    </div>
+    <div ng-show="contribuyente.proyectos_contribuidos">    
     <h2> Proyectos a los que has contribuido </h2>
 	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer; height:470px" ng-repeat="proyecto in contribuyente.proyectos_contribuidos" ng-click="ir($index)">
 
@@ -74,4 +45,39 @@
 			</tr>	
 		</table>
 	</div>
+    </div>
+</section>
+
+
+<div class="row"></div>
+<br/>
+<section data-ng-controller="ProyectosController" data-ng-init="find()">
+<h2>Proyectos en los que tus impuestos pueden ayudar</h2>
+<br/>
+<br/>
+<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="proyecto in proyectos" ng-click="ir($index)">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <form action="">                    
+                        <label for="option" class="categoriaProyecto text-uppercase">{{proyecto.categoria}}:</label>            
+                        <img src="/modules/proyectos/img/{{proyecto._id}}.jpg" class="img-responsive" alt="">
+                        <label for="option" class="tituloProyecto">{{proyecto.name}}</label><br/>
+                        <label for="" class="descripcionProyecto">{{proyecto.descripcion | limitTo:300}}{{proyecto.descripcion.length > 20 ? '...' : ''}}</label><br></br>
+                        <label for="">Lps.{{proyecto.presupuesto | number : 2}}</label><br/>
+                        <div class="progress" style="margin-bottom:0">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100}}%">
+                            {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}%</div>
+                        </div>
+                            <span class="pull-right">                           
+                                <label for="" class="fechaProyecto">Número de contribuyentes: 500</label>
+                            </span>
+                            <span class="pull-left">                            
+                                <label for="" class="fechaProyecto">Meses Estimados: {{proyecto.meses_estimados}}</label>
+                            </span>
+                    </form>
+                </td>
+            </tr>   
+        </table>
+    </div>
 </section>

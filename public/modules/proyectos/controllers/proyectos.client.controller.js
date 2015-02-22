@@ -73,7 +73,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		$scope.findOne = function() {
 			$scope.proyecto = Proyectos.get({ 
 				proyectoId: $stateParams.proyectoId
-			}, function() {
+			}, function() {				
 				$scope.estadoCalculado = 'Activo';
 				if ($scope.proyecto.monto_requerido <= $scope.proyecto.monto_contribuido ) {
 					$scope.estadoCalculado = 'Concluido';
@@ -89,12 +89,12 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 						contribuyenteId: $scope.authentication.user.contribuyente, 
 						proyectoId: proyecto._id
 					}).then(function(res){
-						$scope.respuestaAgregado = 'Guardado exitosamente';
+						$scope.respuestaAgregado = 'Guardado exitosamente';						
 					}, function(err){
 						$scope.respuestaAgregado = err.data.message;
 					});
 				} else {
-					$windi.path('/signin');
+					$location.path('/signin');
 				}
 			} else {
 					$location.path('/signin');
@@ -110,6 +110,12 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    	console.log($scope.proyectos);
 	    	console.log(url);
 	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
-	    };		
-	}
+	    };	
+
+	    // redirigir a actualizaciones
+	    $scope.irActualizacion = function() {
+	    	console.log('/proyectos/' + $scope.proyecto._id + '/actualizacion/');
+	    	$location.path('/proyectos/54e93f2cee53a4dc24193679/actualizacion');
+	    };	
+	} 
 ]);
