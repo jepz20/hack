@@ -1,35 +1,35 @@
 <section data-ng-controller="ProyectosController" data-ng-init="findOne()">
 <div style="background-color:#E4E5E4;" class="" >
-<button class="btn btn-default" ng-click="irActualizacion()">Actua</button>
-		<div class="container" style="color:#00220F;">
-			<h3><b><i>{{proyecto.name}}<i><b></h3>
+	<div class="container" style="color:#00220F;">
+		<h3><b><i>{{proyecto.name}}<i><b></h3>
+	</div>
+
+	<div class="container">
+
+		<div class="col-lg-7 col-md-6">
+			<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">
 		</div>
-
-		<div class="container">
-
-			<div class="col-lg-7 col-md-6">
-				<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">
-			</div>
-			
-			<div class="col-lg-5 col-md-6">
-				<form class="form-inline" role="form">
-					<div class="form-group">
-						<br/>
-						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_contribuido | number : 2}}</label><br/>
-						<label for="" class="control-label">Contribuido</label>
-						<br/><br/>
-						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_requerido | number : 2}}</label><br/>	
-						<label for="" class="control-label">Requerido</label>					
-						<br/><br/>
-						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">{{proyecto.meses_estimados}} meses</label><br/>	
-						<label for="" class="control-label">Tiempo estimado</label>
-						<br/><br/>
-						<button type="button" class="btn btn-primary btn-lg" ng-click="agregar()">Contribuir</button>
-					</div>
-				</form>
-			</div>
+		
+		<div class="col-lg-5 col-md-6">
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<br/>
+					<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_contribuido | number : 2}}</label><br/>
+					<label for="" class="control-label">Contribuido</label>
+					<br/><br/>
+					<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_requerido | number : 2}}</label><br/>	
+					<label for="" class="control-label">Requerido</label>					
+					<br/><br/>
+					<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">{{proyecto.meses_estimados}} meses</label><br/>	
+					<label for="" class="control-label">Tiempo estimado</label>
+					<br/><br/>
+					<button type="button" class="btn btn-primary btn-lg" ng-click="agregar()">Contribuir</button>
+					<button class="btn btn-default" ng-click="irActualizacion()">Actua</button>
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
 	
   <tabset style="background-color:#F0F1F0;">
     <tab heading="Historia" style="cursor:pointer"> 
