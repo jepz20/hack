@@ -10,8 +10,8 @@
 		  <div class="col-sm-10 col-md-8 pull-left">
             <form class="navbar-form" role="search" >
             <div class="input-group">
-                <input type="text" ng-model="proyectos.nombre" placeholder="Busca un proyecto
-                " typeahead="nombre as proy.name for proy in buscaProyectos($viewValue) | limitTo:5" typeahead-loading="loadingProyectos" class="form-control" typeahead-on-select='seleccionarProyectos($item)' typeahead-template-url="views/proyectos/seleccionProyectos.html"  id='proyectoRelacionado'>
+                <input type="text" ng-model="proyectoRelacionado.nombre" placeholder="Busca un proyecto
+                " typeahead="nombre as proy.name for proy in buscaProyectos($viewValue) | limitTo:5" typeahead-loading="loadingProyectos" class="form-control" typeahead-on-select='seleccionarProyecto($item)' typeahead-template-url="/modules/proyectos/views/seleccionProyectos.html"  id='proyectoRelacionado'>
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
