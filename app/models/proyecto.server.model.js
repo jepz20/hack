@@ -24,12 +24,13 @@ var ProyectoSchema = new Schema({
 	},
 	beneficiados: [{
 		type: String,
-		default: '',
+		default: '',		
 		trim:  true
 	}],
 	fecha_inicio: {
 		type: Date,
-		required: 'Favor llenar la fecha de inicio del proyecto'
+		required: 'Favor llenar la fecha de inicio del proyecto',
+		default: Date.now
 	},
 	meses_estimados: {
 		type: Number,
@@ -86,6 +87,14 @@ var ProyectoSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	contribuyentes: {
+		type: Schema.ObjectId,
+		ref: 'Contribuyente'
+	},
+	imagen: {
+		type: String,
+		trim:''
 	}
 });
 

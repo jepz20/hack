@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Contribuyentes
  */
 exports.list = function(req, res) { 
-	Contribuyente.find().sort('-created').populate('user', 'displayName').exec(function(err, contribuyentes) {
+	Contribuyente.find().sort('-created').populate('user', 'displayName', 'proyectos_contribuidos').exec(function(err, contribuyentes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -105,13 +105,3 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
-
-exports.proyectosContribuidos = function(req, res, next, id) {
-	// encontrar ID de usuario
-	Proyectos.find({user: id}).populate('').exec(function(err, proyecto) {
-		if (err) return next(err);
-		if (! proyecto) return next(new Error('Falla en la carga de Proyecto ' + id));
-		req.proyecto = proyecto;
-		next();
-	});
-}
