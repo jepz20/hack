@@ -6,13 +6,58 @@
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="name">Nombre</label>
                     <div class="controls">
                         <input type="text" data-ng-model="proyecto.name" id="name" class="form-control" placeholder="Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <label class="control-label" for="descripcion">descripcion</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.descripcion" id="descripcion" class="form-control" placeholder="descripcion" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="meses_estimado">meses_estimado</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.meses_estimado" id="meses_estimado" class="form-control" placeholder="meses_estimado" required>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label class="control-label" for="presupuesto">presupuesto</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.presupuesto" id="presupuesto" class="form-control" placeholder="presupuesto" required>
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="control-label" for="monto_requerido">monto_requerido</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.monto_requerido" id="monto_requerido" class="form-control" placeholder="monto_requerido" required>
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="control-label" for="monto_contribuido">monto_contribuido</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.monto_contribuido" id="monto_contribuido" class="form-control" placeholder="monto_contribuido" required>
+                    </div>
+                </div>   
+                <div class="form-group">
+                    <label class="control-label" for="localizacion_texto">localizacion_texto</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.localizacion_texto" id="localizacion_texto" class="form-control" placeholder="localizacion_texto" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="categoria">Categoria</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="proyecto.categoria" id="categoria" class="form-control" placeholder="categoria" required>
+                    </div>
+                </div>                                           
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
