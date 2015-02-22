@@ -1,8 +1,8 @@
 'use strict';
 
 // Proyectos controller
-angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Proyectos',
-	function($scope, $stateParams, $location, Authentication, Proyectos) {
+angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Proyectos',
+	function($scope, $stateParams, $location, $http, Authentication, Proyectos) {
 		$scope.authentication = Authentication;
 
 		// Create new Proyecto
@@ -76,13 +76,26 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 			});
 		};
 
-				/**
+		$scope.agregar = function () {
+			var proyecto = $scope.proyecto;
+
+			$http.post('/contribuyentes/agregarproyecto', {
+				contribuyenteId: $scope.authentication.user.contribuyente, 
+				proyectoId: proyecto._id
+			}).then(function(res){
+				$scope.respuestaAgregado = 'Guardado exitosamente';
+			}, function(err){
+				$scope.respuestaAgregado = 'No se pudo agregar el proyecto';
+			});
+		};
+
+		/**
 	     *Redirige a la pagina que muestra el procedimiento y los pasos
 	     @param {string} url pagina a la que se ira
 	     */
 	    $scope.ir = function(url) {	    	
-	    	console.log($scope.proyectos)
-	    	console.log(url)
+	    	console.log($scope.proyectos);
+	    	console.log(url);
 	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
 	    };		
 	}

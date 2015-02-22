@@ -87,10 +87,10 @@ var ProyectoSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	contribuyentes: {
+	contribuyentes: [{
 		type: Schema.ObjectId,
 		ref: 'Contribuyente'
-	},
+	}],
 	imagen: {
 		type: String,
 		trim:''
