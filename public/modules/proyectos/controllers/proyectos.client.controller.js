@@ -74,6 +74,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 			$scope.proyecto = Proyectos.get({ 
 				proyectoId: $stateParams.proyectoId
 			}, function() {
+				conso
 				$scope.estadoCalculado = 'Activo';
 				if ($scope.proyecto.monto_requerido <= $scope.proyecto.monto_contribuido ) {
 					$scope.estadoCalculado = 'Concluido';
@@ -89,12 +90,12 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 						contribuyenteId: $scope.authentication.user.contribuyente, 
 						proyectoId: proyecto._id
 					}).then(function(res){
-						$scope.respuestaAgregado = 'Guardado exitosamente';
+						$scope.respuestaAgregado = 'Guardado exitosamente';						
 					}, function(err){
 						$scope.respuestaAgregado = err.data.message;
 					});
 				} else {
-					$windi.path('/signin');
+					$location.path('/signin');
 				}
 			} else {
 					$location.path('/signin');
