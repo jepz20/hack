@@ -58,7 +58,7 @@ var ProyectoSchema = new Schema({
 	},
 	estado_actual: {
 		type: String,
-		default: ''
+		enum: ['no iniciado', 'en proceso', 'finalizado']
 	},
 	imagenes: [{
 		type: String,

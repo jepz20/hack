@@ -9,6 +9,9 @@ module.exports = function(app) {
 		.get(contribuyentes.list)
 		.post(users.requiresLogin, contribuyentes.create);
 
+	app.route('/contribuyentes/agregarproyecto')
+		.post(contribuyentes.agregarproyecto);
+
 	app.route('/contribuyentes/:contribuyenteId')
 		.get(contribuyentes.read)
 		.put(users.requiresLogin, contribuyentes.hasAuthorization, contribuyentes.update)

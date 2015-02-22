@@ -105,3 +105,24 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+/**
+ * Agregar un proyecto 
+ */
+exports.agregarProyecto = function(req, res) {
+	Contribuyente.findOne({_id: req.query.contribuyenteId}, function(err, contribuyente) {
+		if (err) throw err;
+
+		contribuyente.proyectos_contribuidos.push(req.query.ProyectoId);
+		contribuyente.save();
+	});
+
+	/*var Proyecto = mongoose.model('Proyecto');
+
+	Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
+		if (err) throw err;
+
+		proyecto.contribuyentes.push(req.query.contribuyenteId);
+		proyecto.save();
+	});*/
+};
