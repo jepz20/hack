@@ -211,7 +211,9 @@ exports.agregarImagenes= function (req, res) {
 };
 
 exports.agregarActualizacion = function (req, res) {
-    Proyecto.findOne(req.body.proyectoId, function(err, proyecto) {
+	console.log('req.body');
+	console.log(req.body);
+    Proyecto.findById(req.body.proyectoId, function(err, proyecto) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -222,14 +224,19 @@ exports.agregarActualizacion = function (req, res) {
                     message: 'Fallo en la carga de actualizaciones'
                 });
             } else {
+<<<<<<< HEAD
                 var actualizacion = {
                     descripcion_actualizacion: req.body.descripcion_actualizacion, 
                     imagen_url: req.body.imagen_url
+=======
+                var actualizacion = {                    
+                    descripcion_actualizacion: req.body.descripcion,
+                    url_imagen: req.body.imagen
+>>>>>>> f81600032ce60b7251d78f337accb7c8731acfbb
                 };
-
-                proyecto.actualizaciones.push(actualizacion);
-                proyecto.save(function() {
-                    res.jsonp({Success: true});
+                proyecto.actualizaciones.push(actualizacion);                
+                proyecto.save(function(err,pro) {                	
+                    res.send({Success: true});
                 }); 
             }
         }
