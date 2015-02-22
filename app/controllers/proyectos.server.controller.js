@@ -209,3 +209,25 @@ exports.agregarImagenes= function (req, res) {
         res.send({ msg: 'No existia el archivo ' + new Date().toString() });
     }
 };
+
+exports.agregarActualizacion = function (req, res) {
+    Proyecto.findOne(req.body.proyectoId, function(err, proyecto) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            if (! proyecto) {
+                return res.status(400).send({
+                    message: 'Fallo en la carga de actualizaciones'
+                });
+            } else {
+                var actualizacion = [req.body.fecha_actualizacion, req.body.descripcion, ''];
+                proyecto.actualizaciones.push(actualizacion);
+                proyecto.save(function() {
+                    res.jsonp('Success: true');
+                }); 
+            }
+        }
+    });
+};

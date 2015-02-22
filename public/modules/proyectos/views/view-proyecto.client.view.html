@@ -3,8 +3,11 @@
 		<div class="container">
 			<h3>{{proyecto.name}}</h3>
 		</div>
+	<div>
+		<button type="submit" class="btn btn-default" ng-click="irActualizacion()">Agregar actualizacion</button>
+	</div>
 
-		<div class="container fondoGris">
+	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="noticia in 
 
 			<div class="col-lg-7 col-md-6">
 				<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">
