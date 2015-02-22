@@ -80,10 +80,12 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 			var proyecto = $scope.proyecto;
 
 			$http.post('/contribuyentes/agregarproyecto', {
-				contribuyenteId: $scope.authentication.user.contribuyenteId, 
+				contribuyenteId: $scope.authentication.user.contribuyente, 
 				proyectoId: proyecto._id
-			}, function(data) {
-				$location.path('proyectos/' + proyecto._id);
+			}).then(function(res){
+				$scope.respuestaAgregado = 'Guardado exitosamente';
+			}, function(err){
+				$scope.respuestaAgregado = 'No se pudo agregar el proyecto';
 			});
 		};
 
@@ -92,8 +94,8 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	     @param {string} url pagina a la que se ira
 	     */
 	    $scope.ir = function(url) {	    	
-	    	console.log($scope.proyectos)
-	    	console.log(url)
+	    	console.log($scope.proyectos);
+	    	console.log(url);
 	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
 	    };		
 	}

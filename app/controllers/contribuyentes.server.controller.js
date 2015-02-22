@@ -116,10 +116,16 @@ exports.agregarProyecto = function(req, res) {
 
 	Contribuyente.findById(req.body.contribuyenteId, function(err, contribuyente) {
 		if (err) {
+			console.log('HUBO UN ERROR')
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {	
+		} else {
+			if (! Contribuyente) {
+				res.status(400).send({
+					message: 'Fallo en la carga del contribuyente'
+				})
+			}	
 			contribuyente.proyectos_contribuidos.push(req.body.proyectoId);
 			contribuyente.save(function(err) {
 				if (err) {
@@ -131,7 +137,7 @@ exports.agregarProyecto = function(req, res) {
 
 						proyecto.contribuyentes.push(req.body.contribuyenteId);
 						proyecto.save(function() {
-							res.jsonp('Sucess');
+							res.jsonp('Success: true');
 						});	
 					});
 				}
