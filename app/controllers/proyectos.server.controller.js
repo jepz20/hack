@@ -223,9 +223,8 @@ exports.agregarActualizacion = function (req, res) {
                 });
             } else {
                 var actualizacion = {
-                    fecha_actualizacion: req.body.fecha_actualizacion, 
-                    descripcion: req.body.descripcion, 
-                    imagen: req.body.imagen
+                    descripcion_actualizacion: req.body.descripcion_actualizacion, 
+                    imagen_url: req.body.imagen_url
                 };
 
                 proyecto.actualizaciones.push(actualizacion);

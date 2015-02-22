@@ -124,9 +124,8 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    	var proyecto = $scope.proyecto;
 	    	if ($scope.authentication.user) {
 	    		$http.post('/proyectos/actualizacion', {
-	    			fecha_actualizacion: Date.now,
-	    			descripcion: proyecto.descripcion,
-	    			imagen: proyecto.imagen
+	    			descripcion_actualizacion: proyecto.descripcion,
+	    			imagen_url: proyecto.imagen
 	    		}).then(function(){
 	    			$scope.respuestaAgregado = 'Guardado exitosamente';
 	    			$location.path('proyectos/');
