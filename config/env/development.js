@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://10.10.162.166/maraton-dev',
 	app: {
-		title: 'Maraton - Development Environment'
+		title: 'TaxFunding - Tus impuestos hechos obras'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
