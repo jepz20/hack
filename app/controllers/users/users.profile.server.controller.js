@@ -54,3 +54,18 @@ exports.update = function(req, res) {
 exports.me = function(req, res) {
 	res.json(req.user || null);
 };
+
+exports.asignarContribuyente = function(req,res,next) {
+    var datos = req.body;
+    console.log(datos);
+    User.findById(datos.usuario).exec(function(err,usuario) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        };
+        usuario.contribuyente = datos.contribuyente;
+        usuario.save(function(usuario) {
+            res.send(usuario);
+        });
+    });
+};

@@ -14,7 +14,7 @@ module.exports = function(app) {
 
 	app.route('/contribuyentes/:contribuyenteId')
 		.get(contribuyentes.read)
-		.put(users.requiresLogin, contribuyentes.hasAuthorization, contribuyentes.update)
+		.put(contribuyentes.update)
 		.delete(users.requiresLogin, contribuyentes.hasAuthorization, contribuyentes.delete);
 
 	// Finish by binding the Contribuyente middleware

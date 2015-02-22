@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication','Contribuyentes',
-	function($scope, $http, $location, Users, Authentication, Contribuyentes) {
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$window', '$location', 'Users', 'Authentication','Contribuyentes',
+	function($scope, $http, $window, $location, Users, Authentication, Contribuyentes) {
 		$scope.user = Authentication.user;
 		$scope.contribuyente={};
 		// If user is not signed in then redirect back home
@@ -72,5 +72,25 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		$scope.buscaContribuyentes = function() {
 			$scope.contribuyentes = Contribuyentes.query();
 		};
+
+    /**
+     *Asigna un menu al usuario en caso que ya exista uno lo reemplaza
+     **/
+     $scope.asignaContribuyente = function() {
+        var datos = {};
+        datos.contribuyente = $scope.contribuyente.selected._id;
+        datos.usuario = $scope.user._id;
+        console.log('datos');
+        console.log(datos);
+        $http.post('users/asigna_contribuyente', datos)
+        .then( function(usuario) {
+            console.log(usuario);
+            $scope.regresar();
+        });
+     };
+
+     $scope.regresar = function() {
+        $window.history.back();
+    };		
 	}
 ]);
