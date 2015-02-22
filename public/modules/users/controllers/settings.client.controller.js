@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication','Contribuyentes',
+	function($scope, $http, $location, Users, Authentication, Contribuyentes) {
 		$scope.user = Authentication.user;
-
+		$scope.contribuyente={};
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 
@@ -66,6 +66,11 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
+		};
+
+		//Busca los contribuyentes para ser asignado a un programa
+		$scope.buscaContribuyentes = function() {
+			$scope.contribuyentes = Contribuyentes.query();
 		};
 	}
 ]);
