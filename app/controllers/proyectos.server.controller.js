@@ -79,7 +79,55 @@ exports.delete = function(req, res) {
  * List of Proyectos
  */
 exports.list = function(req, res) { 
-	Proyecto.find().sort('-created').populate('user', 'displayName').exec(function(err, proyectos) {
+    var sort = {}; //campo para hacer el sort, en caso de vacio por fecha de creacion
+    var limite = 99999; //cuantos datos devolvera
+    var query = {}; //El query por el que se filtrara
+    var nombreConsulta;
+    var campos = {};
+   //busca si envio parametro para sort
+    if (req.query.sort) {
+        if (req.query.tipoSort) {
+            sort[req.query.sort] = req.query.tipoSort;
+        } else {
+            sort[req.query.sort] = 1;
+        }
+    } else {
+        sort.created = -1;
+    }
+
+    //determina si envio limite de envio
+    if (req.query.limite) {
+        limite= req.query.limite;
+    }
+
+    //El query
+
+    if (req.query.name) {
+        query.name = {};
+        query.name.$regex = new RegExp(req.query.name,'gi');
+        campos = {};
+    }
+
+        //determina si se envio un query
+    if (req.query.campoQ && req.query.valorQ) {
+        //si quisieran mandar un 1 = 1 que no agregue los campos
+        if (req.query.campoQ.toString() !== req.query.valorQ.toString()) {
+            if (req.query.valorQ instanceof Array) {
+
+                query[req.query.campoQ] = {};
+                query[req.query.campoQ].$in = [];
+                query[req.query.campoQ].$in = req.query.valorQ;
+
+            } else {
+                query[req.query.campoQ] = req.query.valorQ;
+            }
+        }
+    }	
+	Proyecto.find(query,campos).
+	sort('-created')
+	.limit(limite)
+	.populate('user', 'displayName')
+	.exec(function(err, proyectos) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

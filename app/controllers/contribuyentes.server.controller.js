@@ -123,7 +123,7 @@ exports.agregarProyecto = function(req, res) {
 			if (! Contribuyente) {
 				res.status(400).send({
 					message: 'Fallo en la carga del contribuyente'
-				})
+				});
 			} else {	
 				if (contribuyente.proyectos_contribuidos.indexOf(req.body.proyectoId) >= 0) {
 					res.status(400).send({

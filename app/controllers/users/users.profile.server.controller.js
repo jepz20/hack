@@ -62,7 +62,7 @@ exports.asignarContribuyente = function(req,res,next) {
         if (err) {
             console.log(err);
             res.send(err);
-        };
+        }
         usuario.contribuyente = datos.contribuyente;
         usuario.save(function(usuario) {
             res.send(usuario);
