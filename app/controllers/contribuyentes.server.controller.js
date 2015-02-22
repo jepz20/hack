@@ -124,18 +124,15 @@ exports.agregarProyecto = function(req, res) {
 						message: errorHandler.getErrorMessage(err)
 					});
 				} else {
-						Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
-		if (err) throw err;
+					Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
 
-		proyecto.contribuyentes.push(req.query.contribuyenteId);
-		proyecto.save(function() {
-			
-		});
-	});
-				}			
+						proyecto.contribuyentes.push(req.query.contribuyenteId);
+						proyecto.save(function() {
+							res.jsonp('Sucess');
+						});	
+					});
+				}
 			});
 		}
-	});	
-
-
+	});
 };
