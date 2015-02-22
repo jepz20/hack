@@ -1,19 +1,28 @@
 <section data-ng-controller="ProyectosController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Proyectos</h1>
-    </div>
-    <div class="list-group">
-        <a data-ng-repeat="proyecto in proyectos" data-ng-href="#!/proyectos/{{proyecto._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="proyecto.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="proyecto.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="proyecto.name"></h4>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!proyectos.$resolved || proyectos.length">
-    	No Proyectos yet, why don't you <a href="/#!/proyectos/create">create one</a>?
+<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="proyecto in proyectos" ng-click="ir($index)">
+
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <form action="">                    
+                        <label for="option" class="categoriaProyecto text-uppercase">{{proyecto.categoria}}:</label>            
+                        <img src="/modules/proyectos/img/{{proyecto._id}}.jpg" class="img-responsive" alt="">
+                        <label for="option" class="tituloProyecto">{{proyecto.name}}</label><br/>
+                        <label for="" class="descripcionProyecto">{{proyecto.descripcion | limitTo:300}}{{proyecto.descripcion.length > 20 ? '...' : ''}}</label><br></br>
+                        <label for="">Lps.{{proyecto.presupuesto | number : 2}}</label><br/>
+                        <div class="progress" style="margin-bottom:0">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100}}%">
+                            {{(proyecto.monto_contribuido/proyecto.monto_requerido)*100 | number : 0}}%</div>
+                        </div>
+                            <span class="pull-right">                           
+                                <label for="" class="fechaProyecto">Número de contribuyentes: 500</label>
+                            </span>
+                            <span class="pull-left">                            
+                                <label for="" class="fechaProyecto">Meses Estimados: {{proyecto.meses_estimados}}</label>
+                            </span>
+                    </form>
+                </td>
+            </tr>   
+        </table>
     </div>
 </section>

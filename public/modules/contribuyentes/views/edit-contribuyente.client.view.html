@@ -6,17 +6,41 @@
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="name">Nombre</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="contribuyente.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="contribuyente.name" id="name" class="form-control" placeholder="Nombre" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <label class="control-label" for="Ciudad">Ciudad</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="contribuyente.direccion.ciudad" id="ciudad" class="form-control" placeholder="Ciudad" required>
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div class="form-group">
+                    <label class="control-label" for="barrio">Barrio</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="contribuyente.direccion.barrio" id="barrio" class="form-control" placeholder="Barrio" required>
+                    </div>
+                </div>                 
+                <div class="form-group">
+                    <label class="control-label" for="bloque">Bloque</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="contribuyente.direccion.bloque" id="Bloque" class="form-control" placeholder="Bloque" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="rtn">RTN</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="contribuyente.rtn" id="rtn" class="form-control" placeholder="rtn" required>
+                    </div>
+                </div>                                                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

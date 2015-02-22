@@ -75,5 +75,15 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 				proyectoId: $stateParams.proyectoId
 			});
 		};
+
+				/**
+	     *Redirige a la pagina que muestra el procedimiento y los pasos
+	     @param {string} url pagina a la que se ira
+	     */
+	    $scope.ir = function(url) {	    	
+	    	console.log($scope.proyectos)
+	    	console.log(url)
+	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
+	    };		
 	}
 ]);
