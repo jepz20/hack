@@ -52,7 +52,16 @@
                     <div class="controls">
                         <input type="text" data-ng-model="proyecto.categoria" id="categoria" class="form-control" placeholder="categoria" required>
                     </div>
-                </div>                                           
+                </div>
+                <label class="control-label" for="imagenPaso">Imagen</label>
+                <div class="controls">
+                    <div class="img-thumbnail" ng-thumb="{ file: fileImagen, height: 144, width:144 }"></div>
+                    <span class="btn btn-default btn-file btn">
+                        Buscar
+                        <input type="file" file-input="fileImagen" accept="image/png,image/jpeg" name="imagen">
+                    </span>
+                </div>   
+                                                           
                 <div class="form-group">
                     <input type="submit" class="btn btn-default">
                 </div>
