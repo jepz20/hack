@@ -142,7 +142,7 @@ exports.list = function(req, res) {
  * Proyecto middleware
  */
 exports.proyectoByID = function(req, res, next, id) { 
-	Proyecto.findById(id).populate('user', 'displayName').populate('costos').exec(function(err, proyecto) {
+	Proyecto.findById(id).populate('user', 'displayName').exec(function(err, proyecto) {
 		if (err) return next(err);
 		if (! proyecto) return next(new Error('Failed to load Proyecto ' + id));
 		req.proyecto = proyecto ;		

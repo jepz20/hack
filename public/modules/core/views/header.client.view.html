@@ -6,8 +6,9 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-brand">TaxFunding</a>
-	  <div class="col-sm-10 col-md-8 pull-left">
+		<a href="/#!/" class="navbar-brand">TaxFunding</a>	  
+	</div>
+	<div class="col-sm-2 col-md-8 pull-left">
             <form class="navbar-form" role="search" >
             <div class="input-group">
                 <input type="text" ng-model="proyectoRelacionado.nombre" placeholder="Busca un proyecto
@@ -17,8 +18,7 @@
                 </div>
             </div>
             </form>
-        </div>		
-	</div>
+    	</div>		
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
 			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">

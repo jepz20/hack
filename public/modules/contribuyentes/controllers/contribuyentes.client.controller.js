@@ -70,12 +70,13 @@ angular.module('contribuyentes').controller('ContribuyentesController', ['$scope
 
 		// Find existing Contribuyente
 		$scope.findContribuyente = function() {
-			console.log($scope.authentication.user.contribuyente);
-			$scope.contribuyente = Contribuyentes.get({ 
-				contribuyenteId: $scope.authentication.user.contribuyente
-			}, function() {
-				console.log($scope.contribuyente);
-			});			
+			if ($scope.authentication.user) {
+				$scope.contribuyente = Contribuyentes.get({ 
+					contribuyenteId: $scope.authentication.user.contribuyente
+				}, function() {
+					console.log($scope.contribuyente);
+				});			
+			}
 		};		
 				/**
 	     *Redirige a la pagina que muestra el procedimiento y los pasos
