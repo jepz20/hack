@@ -224,15 +224,9 @@ exports.agregarActualizacion = function (req, res) {
                     message: 'Fallo en la carga de actualizaciones'
                 });
             } else {
-<<<<<<< HEAD
-                var actualizacion = {
-                    descripcion_actualizacion: req.body.descripcion_actualizacion, 
-                    imagen_url: req.body.imagen_url
-=======
                 var actualizacion = {                    
                     descripcion_actualizacion: req.body.descripcion,
                     url_imagen: req.body.imagen
->>>>>>> f81600032ce60b7251d78f337accb7c8731acfbb
                 };
                 proyecto.actualizaciones.push(actualizacion);                
                 proyecto.save(function(err,pro) {                	
