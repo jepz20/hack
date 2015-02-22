@@ -122,14 +122,16 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 
 	    $scope.updateActualizacion = function() {
 	    	var proyecto = $scope.proyecto;
+	    	console.log('$scope.proyecto');
+	    	console.log($scope.proyecto);
 	    	if ($scope.authentication.user) {
-	    		$http.post('/proyectos/actualizacion', {
-	    			fecha_actualizacion: Date.now,
-	    			descripcion: proyecto.descripcion,
-	    			imagen: proyecto.imagen
+	    		$http.post('/proyectos/actualizacion', {	    			
+	    			descripcion: this.descripcion,
+	    			imagen: this.imagen,
+	    			proyectoId: proyecto._id
 	    		}).then(function(){
-	    			$scope.respuestaAgregado = 'Guardado exitosamente';
-	    			$location.path('proyectos/');
+	    			console.log('Llegue aquie');
+	    			$scope.respuestaAgregado = 'Guardado exitosamente';	    			
 	    		}, function(err){
 	    			$scope.respuestaAgregado = err.data.message;
 	    		});
