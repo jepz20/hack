@@ -95,6 +95,10 @@ var ProyectoSchema = new Schema({
 	imagen: {
 		type: String,
 		trim:''
+	},
+	categoria: {
+		type: String,
+		trim:''
 	}
 });
 
