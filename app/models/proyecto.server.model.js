@@ -57,8 +57,7 @@ var ProyectoSchema = new Schema({
 		required: 'Favor llenar la localizacion del proyecto'
 	},
 	estado_actual: {
-		type: String,
-		enum: ['no iniciado', 'en proceso', 'finalizado']
+		type: String
 	},
 	imagenes: [{
 		type: String,
