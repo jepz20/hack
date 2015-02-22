@@ -1,10 +1,10 @@
 'use strict';
 
 // Proyectos controller
-angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Proyectos',
-	function($scope, $stateParams, $location, $http, Authentication, Proyectos) {
+angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Proyectos','CargarArchivo',
+	'$window', function($scope, $stateParams, $location, $http, Authentication, Proyectos,CargarArchivo, $window) {
 		$scope.authentication = Authentication;
-
+		$scope.alerts = [];
 		// Create new Proyecto
 		$scope.create = function() {
 			// Create new Proyecto object
@@ -55,10 +55,23 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 
 		// Update existing Proyecto
 		$scope.update = function() {
+			var icono_ext;
 			var proyecto = $scope.proyecto;
 
-			proyecto.$update(function() {
-				$location.path('proyectos/' + proyecto._id);
+			if ($scope.fileImagen)
+			{
+				icono_ext = $scope.fileImagen.name.substr($scope.fileImagen.name.length-3,3);
+			}
+			else {
+				icono_ext = null;
+			}
+			$scope.proyecto.imagen = icono_ext || $scope.programa.icono;
+
+			proyecto.$update(function(response) {
+				if (icono_ext) {
+					$scope.uploadIcono(response.imagen);
+				}
+				$scope.regresar();
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -89,11 +102,14 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 						contribuyenteId: $scope.authentication.user.contribuyente, 
 						proyectoId: proyecto._id
 					}).then(function(res){
+						console.log(res);
 						$scope.respuestaAgregado = 'Guardado exitosamente';						
 						console.log($scope.respuestaAgregado);
-						$location.path('/');
+						$scope.proyecto.monto_contribuido = $scope.proyecto.monto_contribuido + res.data.total;
+						$scope.addAlert('Muchas gracias por tu pago de impuesto a esta obra!!!','success');
 					}, function(err){
 						$scope.respuestaAgregado = err.data.message;
+						$scope.addAlert('Lo sentimos ' + $scope.respuestaAgregado + ':(','danger');
 						console.log($scope.respuestaAgregado);
 					});
 				} else {
@@ -104,6 +120,14 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 			}
 			
 		};
+
+	  $scope.addAlert = function(msg,type) {
+	    $scope.alerts.push({msg: msg, type: type});
+	  };
+
+	  $scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
+	  };
 
 		/**
 	     *Redirige a la pagina que muestra el procedimiento y los pasos
@@ -118,6 +142,21 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    	var url = '/proyectos/' + $scope.proyecto._id + '/actualizacion';
 	    	$location.path(url);
 	    };	
+		
+		$scope.uploadIcono = function(nombreIcono) {
+	        var files = [];
+	        var cont = 0;
+	        if ($scope.fileImagen) {
+	            files[cont] = $scope.fileImagen;
+	            cont++;
+	        }
+			var uploadUrl = '/proyectos/uploadImagen?nombreIcono=' + nombreIcono;
+	        CargarArchivo
+	            .uploadFileToUrl(files, uploadUrl);
+		};
+        $scope.regresar = function() {
+            $window.history.back();
+        };
 
 	    $scope.updateActualizacion = function() {
 	    	var proyecto = $scope.proyecto;

@@ -137,21 +137,28 @@ exports.agregarProyecto = function(req, res) {
 					}
 
 					contribuyente.pagos = [];
-					contribuyente.save(function(err) {
-						if (err) {
-							return res.status(400).send({
-								message: errorHandler.getErrorMessage(err)
-							});
-						} else {
-							Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
-								proyecto.monto_contribuido = proyecto.monto_contribuido + totalPago * 0.4;
-								proyecto.contribuyentes.push(req.body.contribuyenteId);
-								proyecto.save(function() {
-									res.jsonp('Success: true');
-								});	
-							});
-						}
-					});
+					if (totalPago !== 0) {
+						contribuyente.save(function(err) {
+							if (err) {
+								return res.status(400).send({
+									message: errorHandler.getErrorMessage(err)
+								});
+							} else {
+								Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
+									proyecto.monto_contribuido = proyecto.monto_contribuido + totalPago * 0.4;
+									proyecto.contribuyentes.push(req.body.contribuyenteId);
+									proyecto.save(function() {
+										res.jsonp({'Success': 'true', total: totalPago });
+									});	
+								});
+							}
+						});
+					}
+					else {
+						res.status(400).send({
+							message: 'No hay fondos suficientes'
+						});
+					}
 				}
 			}
 		}

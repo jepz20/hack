@@ -55,7 +55,7 @@
 					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Cambiar Clave</a>
 					</li>
-					<li>
+					<li data-ng-hide="authentication.user.contribuyente">
 						<a href="/#!/settings/relacionar">Relacionar Contribuyente</a>
 					</li>
 					<li class="divider"></li>

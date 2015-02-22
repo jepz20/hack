@@ -59,10 +59,10 @@ var ProyectoSchema = new Schema({
 	estado_actual: {
 		type: String
 	},
-	imagenes: [{
+	imagenes: {
 		type: String,
 		default: ''
-	}],
+	},
 	actualizaciones: [{
 		fecha_actualizacion: {
 			type: Date,

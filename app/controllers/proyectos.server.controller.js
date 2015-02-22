@@ -165,12 +165,15 @@ exports.hasAuthorization = function(req, res, next) {
  *un thumbnail de la imagen
  */
 exports.agregarImagenes= function (req, res) {
-    var proyectosId = req.query.proyectosId;
+    console.log('LLegue aqui');
+    var proyectosId = req.query.proyectoId;
+    console.log('LLegue aqui');
     var newImagenName;
     if (req.files){
         if (req.files.length > 0) {
             var rootPath = path.normalize(__dirname + '/../..');
-            rootPath = rootPath + '/public/modules/proyectoss/img/';
+            rootPath = rootPath + '/public/modules/proyectos/img/';
+            console.log("hola voy a guardar la imagen");
             /*Guarda la imagen*/
             if (req.files.image) {
                 if (req.files.image.size !== 0) {

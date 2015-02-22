@@ -1,6 +1,6 @@
 <section data-ng-controller="ProyectosController" data-ng-init="findOne()">
 <div style="background-color:#E4E5E4;" class="" >
-<button class="btn btn-default" ng-click="irActualizacion()">Actua</button>
+ 		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 		<div class="container" style="color:#00220F;">
 			<h3><b><i>{{proyecto.name}}<i><b></h3>
 		</div>
