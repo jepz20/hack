@@ -21,3 +21,25 @@
 	color:#777777;	
 	font-size: x-small;
 }
+
+.textoGrande{
+	font-size: xx-large; 
+	color:#000000;
+}
+
+.fondoGris{
+	background:#FFFFFF;
+	color:#000000; 	
+}
+
+.titulos{
+	background:#FFFFFF;
+	color:#000000; 
+}
+
+.descripcionActualizacion{
+	font-weight: normal;
+	color:#777777;
+	font-size: small;
+	font-family: "Tahoma", "Geneva", sans-serif;;
+}
