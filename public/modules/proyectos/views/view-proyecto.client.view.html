@@ -1,11 +1,11 @@
-<section data-ng-controller="ProyectosController" data-ng-init="findOne()" sytle="background:#E3EAEB" >
-<div class="fondoGris">
+<section data-ng-controller="ProyectosController" data-ng-init="findOne()">
+<div style="background-color:#E4E5E4;" class="" >
 <button class="btn btn-default" ng-click="irActualizacion()">Actua</button>
-		<div class="container">
-			<h3>{{proyecto.name}}</h3>
+		<div class="container" style="color:#00220F;">
+			<h3><b><i>{{proyecto.name}}<i><b></h3>
 		</div>
 
-		<div class="container fondoGris">
+		<div class="container">
 
 			<div class="col-lg-7 col-md-6">
 				<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">
@@ -28,21 +28,13 @@
 					</div>
 				</form>
 			</div>
-		</div>		
-		<br/>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-				</div>
-			</div>
-		</div><br/>	
+		</div>
 	</div>
-
-  <tabset>
-    <tab heading="Historia"> 
-		<div class="container">
-	     <h4 class="text-info">Sobre este proyecto</h4>
+	
+  <tabset style="background-color:#F0F1F0;">
+    <tab heading="Historia" style="cursor:pointer"> 
+		<div class="container" >
+	     <h4 class="text-info ">Sobre este proyecto</h4>
 			<p>
 				{{proyecto.descripcion}}
 			</p><br/>
@@ -63,7 +55,8 @@
 	     </div>						   	 	
    	 </div>
 </tab>
-<tab heading="Actualizaciones"> 
+
+<tab heading="Actualizaciones" style="cursor:pointer"> 
 	<div class="container">
      	<h4 class="text-info">Detalles</h4>
      	<label for="">Fecha de Inicio: {{proyecto.fecha_inicio | date:'dd/MM/yyyy'}}</label>
