@@ -68,5 +68,12 @@ angular.module('contribuyentes').controller('ContribuyentesController', ['$scope
 			$scope.pagos[0] = {'tipo': 'Vecinal', 'anio': 2015, 'valor': 2000};
 			$scope.pagos[1] = {'tipo': 'Vecinal', 'anio': 2014, 'valor': 3000};
 		};
+				/**
+	     *Redirige a la pagina que muestra el procedimiento y los pasos
+	     @param {string} url pagina a la que se ira
+	     */
+	    $scope.ir = function(url) {
+	        $location.path(url);
+	    };
 	}
 ]);
