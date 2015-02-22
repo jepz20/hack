@@ -1,0 +1,25 @@
+<section class="row" data-ng-controller="SettingsController">
+	<h3 class="col-md-12 text-center">Relacionar Contribuyente</h3>
+	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+		<form data-ng-submit="changeUserPassword()" class="signin form-horizontal" autocomplete="off">
+			<fieldset>
+                    <div class="input-group">
+                            <ui-select ng-model="grupo.selected" theme="selectize" style="width: 300px;">
+                                <ui-select-match placeholder="Escoga un grupo...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="grupo in grupos | filter: $select.search">
+                                    <span ng-bind-html="grupo.nombre | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <div class="input-group-btn input-group-btn-selective" style="width: 300px;">
+                                <span class="btn btn-default btn-selective" ng-click="limpiaUiSelect()" ng-show="grupo.selected">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </span>
+                                <span class="btn btn-default btn-selective" ng-click="agregaAlmacenado(programa,'programa', 'grupo', '/grupos/create');" ng-hide="grupo.selected" >
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </span>
+                            </div>
+                    </div>
+			</fieldset>
+		</form>
+	</div>
+</section>

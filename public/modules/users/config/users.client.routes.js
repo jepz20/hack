@@ -13,6 +13,10 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
 		}).
+		state('relacionar', {
+			url: '/settings/relacionar',
+			templateUrl: 'modules/users/views/settings/relacionar-contribuyente.client.view.html'
+		}).
 		state('accounts', {
 			url: '/settings/accounts',
 			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'
