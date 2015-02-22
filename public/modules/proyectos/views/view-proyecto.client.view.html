@@ -22,4 +22,18 @@
 		<button type="submit" class="btn btn-default" ng-click="agregar()">Donar</button>
 		<p>{{respuestaAgregado}}</p>
 	</div>
+
+	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="noticia in proyecto.actualizaciones" ng-click="ir()">
+
+		<table class="table table-bordered">
+			<tr>
+				<td>
+					<form action="">					
+						<label for="option" class="fechaNoticia">{{noticia.fecha_actualizacion}}</label><br/>
+						<label for="" class="descripcionProyecto">{{noticia.descripcion | limitTo:300}}{{noticia.descripcion.length > 20 ? '...' : ''}}</label><br></br>
+					</form>
+				</td>
+			</tr>	
+		</table>
+	</div>
 </section>

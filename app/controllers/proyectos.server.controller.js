@@ -94,7 +94,7 @@ exports.list = function(req, res) {
  * Proyecto middleware
  */
 exports.proyectoByID = function(req, res, next, id) { 
-	Proyecto.findById(id).populate('user', 'displayName').exec(function(err, proyecto) {
+	Proyecto.findById(id).populate('user', 'displayName').populate('actualizaciones').exec(function(err, proyecto) {
 		if (err) return next(err);
 		if (! proyecto) return next(new Error('Failed to load Proyecto ' + id));
 		req.proyecto = proyecto ;
@@ -111,8 +111,6 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
-
-
 
 /**
  *Carga la imagen y video del procedimiento ademas de hacer
