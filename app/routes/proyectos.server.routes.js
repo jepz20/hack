@@ -13,6 +13,10 @@ module.exports = function(app) {
 		.get(proyectos.read)
 		.put(users.requiresLogin, proyectos.update)
 		.delete(users.requiresLogin, proyectos.delete);
+
+	app.route('/proyectos/actualizacion')
+		.post(proyectos.agregarActualizacion);
+
 	app.route('/proyectos/uploadimagen')
 		.post(proyectos.agregarImagenes);
 	// Finish by binding the Proyecto middleware
