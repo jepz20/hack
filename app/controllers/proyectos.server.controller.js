@@ -142,7 +142,7 @@ exports.list = function(req, res) {
  * Proyecto middleware
  */
 exports.proyectoByID = function(req, res, next, id) { 
-	Proyecto.findById(id).populate('user', 'displayName').exec(function(err, proyecto) {
+	Proyecto.findById(id).populate('user', 'displayName').populate('costos').exec(function(err, proyecto) {
 		if (err) return next(err);
 		if (! proyecto) return next(new Error('Failed to load Proyecto ' + id));
 		req.proyecto = proyecto ;		
@@ -173,7 +173,6 @@ exports.agregarImagenes= function (req, res) {
         if (req.files.length > 0) {
             var rootPath = path.normalize(__dirname + '/../..');
             rootPath = rootPath + '/public/modules/proyectos/img/';
-            console.log("hola voy a guardar la imagen");
             /*Guarda la imagen*/
             if (req.files.image) {
                 if (req.files.image.size !== 0) {

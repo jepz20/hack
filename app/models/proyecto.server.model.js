@@ -98,7 +98,20 @@ var ProyectoSchema = new Schema({
 	categoria: {
 		type: String,
 		trim:''
-	}
+	},
+	costos: [{
+		descripcion_costo: {
+			type: String,
+			default: '',
+			required: 'Falta descripcion de los costos',
+			trim: true
+		},
+		monto_costo: {
+			type: Number,
+			default: 0,
+			required: 'Falta monto de los costos'
+		}
+	}]
 });
 
 mongoose.model('Proyecto', ProyectoSchema);
