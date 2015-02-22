@@ -54,24 +54,16 @@ var ContribuyenteSchema = new Schema({
 		anio: {
 			type: Number,
 			required: 'favor ingrese el año'	
-		},
-		fechaPago:{
-			type: Date,
-			default: Date.now
-		},
-		valorPago:{
-			type: Number
 		}
-
 	}],
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	proyectos_contribuidos: {
+	proyectos_contribuidos: [{
 		type: Schema.ObjectId,
 		ref: 'Proyecto'
-	},
+	}],
 	created: {
 		type: Date,
 		default: Date.now
