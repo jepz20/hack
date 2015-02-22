@@ -116,7 +116,6 @@ exports.agregarProyecto = function(req, res) {
 
 	Contribuyente.findById(req.body.contribuyenteId, function(err, contribuyente) {
 		if (err) {
-			console.log('HUBO UN ERROR')
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
@@ -125,23 +124,30 @@ exports.agregarProyecto = function(req, res) {
 				res.status(400).send({
 					message: 'Fallo en la carga del contribuyente'
 				})
-			}	
-			contribuyente.proyectos_contribuidos.push(req.body.proyectoId);
-			contribuyente.save(function(err) {
-				if (err) {
-					return res.status(400).send({
-						message: errorHandler.getErrorMessage(err)
+			} else {	
+				if (contribuyente.proyectos_contribuidos.indexOf(req.body.proyectoId) >= 0) {
+					res.status(400).send({
+						message: 'Proyecto ya ha sido elegido anteriormente'
 					});
 				} else {
-					Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
+					contribuyente.proyectos_contribuidos.push(req.body.proyectoId);
+					contribuyente.save(function(err) {
+						if (err) {
+							return res.status(400).send({
+								message: errorHandler.getErrorMessage(err)
+							});
+						} else {
+							Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
 
-						proyecto.contribuyentes.push(req.body.contribuyenteId);
-						proyecto.save(function() {
-							res.jsonp('Success: true');
-						});	
+								proyecto.contribuyentes.push(req.body.contribuyenteId);
+								proyecto.save(function() {
+									res.jsonp('Success: true');
+								});	
+							});
+						}
 					});
 				}
-			});
+			}
 		}
 	});
 };

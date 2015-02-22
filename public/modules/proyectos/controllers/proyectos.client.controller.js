@@ -85,7 +85,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 			}).then(function(res){
 				$scope.respuestaAgregado = 'Guardado exitosamente';
 			}, function(err){
-				$scope.respuestaAgregado = 'No se pudo agregar el proyecto';
+				$scope.respuestaAgregado = err.data.message;
 			});
 		};
 
