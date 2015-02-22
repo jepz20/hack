@@ -1,8 +1,8 @@
 'use strict';
 
 // Proyectos controller
-angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Proyectos',
-	function($scope, $stateParams, $location, Authentication, Proyectos) {
+angular.module('proyectos').controller('ProyectosController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Proyectos',
+	function($scope, $stateParams, $location, $http, Authentication, Proyectos) {
 		$scope.authentication = Authentication;
 
 		// Create new Proyecto
@@ -73,6 +73,17 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		$scope.findOne = function() {
 			$scope.proyecto = Proyectos.get({ 
 				proyectoId: $stateParams.proyectoId
+			});
+		};
+
+		$scope.agregar = function () {
+			var proyecto = $scope.proyecto;
+
+			$http.post('/contribuyentes/agregarproyecto', {
+				contribuyenteId: $scope.authentication.user.contribuyenteId, 
+				proyectoId: proyecto._id
+			}, function(data) {
+				$location.path('proyectos/' + proyecto._id);
 			});
 		};
 	}

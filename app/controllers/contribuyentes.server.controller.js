@@ -111,22 +111,25 @@ exports.hasAuthorization = function(req, res, next) {
  * Agregar un proyecto 
  */
 exports.agregarProyecto = function(req, res) {
-	Contribuyente.findOne({_id: req.query.contribuyenteId}, function(err, contribuyente) {
+	console.log('CONTRIBUYENTE: ' + req.body.contribuyenteId);
+	console.log('PROYECTO: ' + req.body.proyectoId);
+
+	Contribuyente.findById(req.body.contribuyenteId, function(err, contribuyente) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {			
-			contribuyente.proyectos_contribuidos.push(req.query.ProyectoId);
+		} else {	
+			contribuyente.proyectos_contribuidos.push(req.body.proyectoId);
 			contribuyente.save(function(err) {
 				if (err) {
 					return res.status(400).send({
 						message: errorHandler.getErrorMessage(err)
 					});
 				} else {
-					Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
+					Proyecto.findOne({_id: req.body.proyectoId}, function(err, proyecto) {
 
-						proyecto.contribuyentes.push(req.query.contribuyenteId);
+						proyecto.contribuyentes.push(req.body.contribuyenteId);
 						proyecto.save(function() {
 							res.jsonp('Sucess');
 						});	
