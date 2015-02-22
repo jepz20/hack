@@ -1,25 +1,94 @@
-<section data-ng-controller="ProyectosController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="proyecto.name"></h1>
+<section data-ng-controller="ProyectosController" data-ng-init="findOne()" sytle="background:#E3EAEB" >
+<div class="fondoGris">
+		<div class="container">
+			<h3>{{proyecto.name}}</h3>
+		</div>
+
+		<div class="container fondoGris">
+
+			<div class="col-lg-7 col-md-6">
+				<img src="/modules/proyectos/img/{{proyecto._id}}lg.jpg" class="img-thumbnail"alt="">
+			</div>
+			
+			<div class="col-lg-5 col-md-6">
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<br/>
+						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_contribuido | number : 2}}</label><br/>
+						<label for="" class="control-label">Contribuido</label>
+						<br/><br/>
+						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">Lps {{proyecto.monto_requerido | number : 2}}</label><br/>	
+						<label for="" class="control-label">Requerido</label>					
+						<br/><br/>
+						<label for="" class="control-label textoGrande" style="margin-bottom:0;padding-bottom:0">{{proyecto.meses_estimados}} meses</label><br/>	
+						<label for="" class="control-label">Tiempo estimado</label>
+						<br/><br/>
+						<button type="button" class="btn btn-primary btn-lg" ng-click="agregar()">Contribuir</button>
+					</div>
+				</form>
+			</div>
+		</div>		
+		<br/>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				</div>
+			</div>
+		</div><br/>	
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == proyecto.user._id))">
-		<a class="btn btn-primary" href="/#!/proyectos/{{proyecto._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="proyecto.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="proyecto.user.displayName"></span>
-		</em>
-	</small>
-	<div>
-		<button type="submit" class="btn btn-default" ng-click="agregar()">Donar</button>
-		<p>{{respuestaAgregado}}</p>
-	</div>
+
+
+  <tabset>
+    <tab heading="Historia"> 
+		<div class="container">
+	     <h4 class="text-info">Sobre este proyecto</h4>
+			<p>
+				{{proyecto.descripcion}}
+			</p><br/>
+			<h4 class="text-info">Localización</h4>
+			<p>
+				{{proyecto.localizacion_texto}}
+			</p><br/>
+			<h4 class="text-info">Materiales y Equipo</h4>
+			<p> -Concreto/Hormigón armado"</p>
+			<p> -Madera de construcción</p>
+			<p> -Materiales biológicos</p>
+			<p> -Materiales sintéticos</p>
+			<p> -Metales para hacer casas</p>
+			<p> -Piedra en la construcción</p>
+			<p> -Reciclado de materiales</p>
+			<p> -Tierra apisonada, barro y adobe</p>
+			<p> -Otros materiales</p>		
+	     </div>						   	 	
+   	 </div>
+</tab>
+<tab heading="Actualizaciones"> 
+	<div class="container">
+     	<h4 class="text-info">Detalles</h4>
+     	<label for="">Fecha de Inicio: {{proyecto.fecha_inicio | date:'dd/MM/yyyy'}}</label>
+     	<br/>
+     	<label for="">Estado: {{estadoCalculado}}</label>
+     	<br/>     	
+     	<div class="container">
+			<div class="container col-xs-8 col-sm-5 col-md-5 col-lg-5 col-xs-offset-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" ng-repeat="actualizacion in proyecto.actualizaciones">
+				<table class="table table-striped table-bordered">
+					<tr>
+						<td>
+							<form action="">
+								<label for="option" class="categoriaProyecto text-uppercase">{{proyecto.categoria}}</label>			
+								<img src="/modules/proyectos/img/{{proyecto._id}}n{{$index+1}}.jpg" class="img-responsive" alt="">
+								<label for="" class="descripcionActualizacion">{{actualizacion.descripcion_actualizacion}}</label><br>
+								<label for="">{{actualizacion.fecha_actualizacion | date: 'dd/MM/yyyy'}}</label>
+							</form>
+						</td>
+					</tr>	
+				</table>
+			</div>
+     	</div>
+     </div>
+</tab>
+ </tabset>
+
+  <hr /> 
 </section>

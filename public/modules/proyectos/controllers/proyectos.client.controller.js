@@ -73,20 +73,33 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		$scope.findOne = function() {
 			$scope.proyecto = Proyectos.get({ 
 				proyectoId: $stateParams.proyectoId
+			}, function() {
+				$scope.estadoCalculado = 'Activo';
+				if ($scope.proyecto.monto_requerido <= $scope.proyecto.monto_contribuido ) {
+					$scope.estadoCalculado = 'Concluido';
+				};
 			});
 		};
 
 		$scope.agregar = function () {
 			var proyecto = $scope.proyecto;
-
-			$http.post('/contribuyentes/agregarproyecto', {
-				contribuyenteId: $scope.authentication.user.contribuyente, 
-				proyectoId: proyecto._id
-			}).then(function(res){
-				$scope.respuestaAgregado = 'Guardado exitosamente';
-			}, function(err){
-				$scope.respuestaAgregado = err.data.message;
-			});
+			if ($scope.authentication.user) {
+				if ($scope.authentication.user.contribuyente) {
+					$http.post('/contribuyentes/agregarproyecto', {
+						contribuyenteId: $scope.authentication.user.contribuyente, 
+						proyectoId: proyecto._id
+					}).then(function(res){
+						$scope.respuestaAgregado = 'Guardado exitosamente';
+					}, function(err){
+						$scope.respuestaAgregado = err.data.message;
+					});
+				} else {
+					$windi.path('/signin');
+				}
+			} else {
+					$location.path('/signin');
+			}
+			
 		};
 
 		/**

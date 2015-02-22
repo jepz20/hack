@@ -11,8 +11,8 @@ module.exports = function(app) {
 
 	app.route('/proyectos/:proyectoId')
 		.get(proyectos.read)
-		.put(users.requiresLogin, proyectos.hasAuthorization, proyectos.update)
-		.delete(users.requiresLogin, proyectos.hasAuthorization, proyectos.delete);
+		.put(users.requiresLogin, proyectos.update)
+		.delete(users.requiresLogin, proyectos.delete);
 	app.route('/proyectos/uploadimagen')
 		.post(proyectos.agregarImagenes);
 	// Finish by binding the Proyecto middleware
