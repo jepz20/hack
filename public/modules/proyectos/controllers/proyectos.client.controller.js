@@ -97,6 +97,12 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    	console.log($scope.proyectos);
 	    	console.log(url);
 	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
-	    };		
-	}
+	    };	
+
+	    // redirigir a actualizaciones
+	    $scope.irActualizacion = function() {
+	    	console.log('/proyectos/' + $scope.proyecto._id + '/actualizacion/');
+	    	$location.path('proyectos/' + $scope.proyecto._id + '/actualizacion/');
+	    };	
+	} 
 ]);

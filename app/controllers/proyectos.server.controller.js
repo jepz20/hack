@@ -142,7 +142,7 @@ exports.list = function(req, res) {
  * Proyecto middleware
  */
 exports.proyectoByID = function(req, res, next, id) { 
-	Proyecto.findById(id).populate('user', 'displayName').populate('actualizaciones').exec(function(err, proyecto) {
+	Proyecto.findById(id).populate('user', 'displayName').exec(function(err, proyecto) {
 		if (err) return next(err);
 		if (! proyecto) return next(new Error('Failed to load Proyecto ' + id));
 		req.proyecto = proyecto ;
@@ -208,4 +208,26 @@ exports.agregarImagenes= function (req, res) {
         console.log('no hay nada');
         res.send({ msg: 'No existia el archivo ' + new Date().toString() });
     }
+};
+
+exports.agregarActualizacion = function (req, res) {
+    Proyecto.findOne(req.body.proyectoId, function(err, proyecto) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            if (! proyecto) {
+                return res.status(400).send({
+                    message: 'Fallo en la carga de actualizaciones'
+                });
+            } else {
+                var actualizacion = [req.body.fecha_actualizacion, req.body.descripcion, ''];
+                proyecto.actualizaciones.push(actualizacion);
+                proyecto.save(function() {
+                    res.jsonp('Success: true');
+                }); 
+            }
+        }
+    });
 };

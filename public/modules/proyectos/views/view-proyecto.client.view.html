@@ -23,7 +23,11 @@
 		<p>{{respuestaAgregado}}</p>
 	</div>
 
-	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="noticia in proyecto.actualizaciones" ng-click="ir()">
+	<div>
+		<button type="submit" class="btn btn-default" ng-click="irActualizacion()">Agregar actualizacion</button>
+	</div>
+
+	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer" ng-repeat="noticia in proyecto.actualizaciones" ng-click="irActualizacion()">
 
 		<table class="table table-bordered">
 			<tr>

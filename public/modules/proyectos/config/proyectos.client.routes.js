@@ -20,6 +20,10 @@ angular.module('proyectos').config(['$stateProvider',
 		state('editProyecto', {
 			url: '/proyectos/:proyectoId/edit',
 			templateUrl: 'modules/proyectos/views/edit-proyecto.client.view.html'
+		}).
+		state('actualizacionProyecto', {
+			url: '/proyectos/:proyectoId/actualizacion',
+			templateUrl: 'modules/proyectos/views/actualizacion-proyecto.client.view.html'
 		});
 	}
 ]);
