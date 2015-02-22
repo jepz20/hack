@@ -90,8 +90,11 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 						proyectoId: proyecto._id
 					}).then(function(res){
 						$scope.respuestaAgregado = 'Guardado exitosamente';						
+						console.log($scope.respuestaAgregado);
+						$location.path('/')
 					}, function(err){
 						$scope.respuestaAgregado = err.data.message;
+						console.log($scope.respuestaAgregado);
 					});
 				} else {
 					$location.path('/signin');
@@ -116,6 +119,15 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    $scope.irActualizacion = function() {
 	    	console.log('/proyectos/' + $scope.proyecto._id + '/actualizacion/');
 	    	$location.path('/proyectos/54e93f2cee53a4dc24193679/actualizacion');
-	    };	
+	    };
+
+
+	  $scope.addAlert = function(text) {
+	    $scope.alerts.push({msg: texto});
+	  };
+
+	  $scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
+	  };	
 	} 
 ]);
