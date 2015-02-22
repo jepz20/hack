@@ -16,14 +16,6 @@ var ContribuyenteSchema = new Schema({
 		required: 'Please fill Contribuyente name',
 		trim: true
 	},
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
-	},
 	direccion:{
 		ciudad:{
 			type: String,
@@ -40,11 +32,11 @@ var ContribuyenteSchema = new Schema({
 			trim: true
 		},
 	},
-	telefonos:[{
-			type: String,
-			trim: true,
-			maxLength: 8
-		}],
+	telefonos: [{
+		type: String,
+		trim: true,
+		maxLength: 8
+	}],
 	rtn:{
 		type: String,
 		trim: true
@@ -71,8 +63,19 @@ var ContribuyenteSchema = new Schema({
 			type: Number
 		}
 
-	}]
-
+	}],
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
+	proyectos_contribuidos: {
+		type: Schema.ObjectId,
+		ref: 'Proyecto'
+	},
+	created: {
+		type: Date,
+		default: Date.now
+	},
 });
 
 mongoose.model('Contribuyente', ContribuyenteSchema);

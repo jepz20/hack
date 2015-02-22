@@ -8,12 +8,21 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		// Create new Proyecto
 		$scope.create = function() {
 			// Create new Proyecto object
+			var beneficiarios = [];
+			var imagenes = [];
+
+			beneficiarios.push(this.beneficiarios);
+			imagenes.push(this.imagenes);
+
 			var proyecto = new Proyectos ({
 				name: this.name,
 				descripcion: this.descripcion,
-				meses_estimado: this.meses_estimado,
+				meses_estimados: this.meses_estimados,
 				presupuesto: this.presupuesto,
-				localizacion_texto: this.localizacion_texto
+				monto_requerido: this.monto_requerido,
+				monto_contribuido: this.monto_contribuido,
+				localizacion_texto: this.localizacion_texto,
+				estado_actual: this.estado_actual,
 			});
 
 			// Redirect after save
