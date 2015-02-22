@@ -88,7 +88,7 @@ exports.list = function(req, res) {
  * Contribuyente middleware
  */
 exports.contribuyenteByID = function(req, res, next, id) { 
-	Contribuyente.findById(id).populate('user', 'displayName').exec(function(err, contribuyente) {
+	Contribuyente.findById(id).populate('user', 'displayName')..populate(proyectos).exec(function(err, contribuyente) {
 		if (err) return next(err);
 		if (! contribuyente) return next(new Error('Failed to load Contribuyente ' + id));
 		req.contribuyente = contribuyente ;

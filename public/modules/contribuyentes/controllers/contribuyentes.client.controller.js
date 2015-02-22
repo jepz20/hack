@@ -5,6 +5,7 @@ angular.module('contribuyentes').controller('ContribuyentesController', ['$scope
 	function($scope, $stateParams, $location, Authentication, Contribuyentes) {
 		$scope.authentication = Authentication;
 
+
 		// Create new Contribuyente
 		$scope.create = function() {
 			// Create new Contribuyente object
@@ -60,8 +61,11 @@ angular.module('contribuyentes').controller('ContribuyentesController', ['$scope
 		// Find existing Contribuyente
 		$scope.findOne = function() {
 			$scope.contribuyente = Contribuyentes.get({ 
-				contribuyenteId: $stateParams.contribuyenteId
-			});
+				contribuyenteId: $stateParams.contribuyenteId				
+			});			
+			$scope.pagos = [];
+			$scope.pagos[0] = {"tipo": "Vecinal", "anio": 2015, "valor": 2000};
+			$scope.pagos[1] = {"tipo": "Vecinal", "anio": 2014, "valor": 3000};
 		};
 	}
 ]);
