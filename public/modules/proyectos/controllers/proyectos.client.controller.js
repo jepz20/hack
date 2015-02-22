@@ -77,7 +77,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 				$scope.estadoCalculado = 'Activo';
 				if ($scope.proyecto.monto_requerido <= $scope.proyecto.monto_contribuido ) {
 					$scope.estadoCalculado = 'Concluido';
-				};
+				}
 			});
 		};
 
@@ -97,7 +97,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 					$location.path('/signin');
 				}
 			} else {
-					$location.path('/signin');
+				$location.path('/signin');
 			}
 			
 		};
@@ -106,16 +106,33 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	     *Redirige a la pagina que muestra el procedimiento y los pasos
 	     @param {string} url pagina a la que se ira
 	     */
-	    $scope.ir = function(url) {	    	
-	    	console.log($scope.proyectos);
-	    	console.log(url);
+	    $scope.ir = function(url) {	
 	        $location.path('/proyectos/' + $scope.proyectos[url]._id);
 	    };	
 
 	    // redirigir a actualizaciones
 	    $scope.irActualizacion = function() {
-	    	console.log('/proyectos/' + $scope.proyecto._id + '/actualizacion/');
-	    	$location.path('/proyectos/54e93f2cee53a4dc24193679/actualizacion');
+	    	var url = '/proyectos/' + $scope.proyecto._id + '/actualizacion';
+	    	console.log('URL=' + url);
+	    	$location.path(url);
 	    };	
+
+	    $scope.updateActualizacion = function() {
+	    	var proyecto = $scope.proyecto;
+	    	if ($scope.authentication.user) {
+	    		$http.post('/proyectos/actualizacion', {
+	    			fecha_actualizacion: Date.now,
+	    			descripcion: proyecto.descripcion,
+	    			imagen: proyecto.imagen
+	    		}).then(function(){
+	    			$scope.respuestaAgregado = 'Guardado exitosamente';
+	    			$location.path('proyectos/');
+	    		}, function(err){
+	    			$scope.respuestaAgregado = err.data.message;
+	    		});
+	    	} else {
+	    		$location.path('/signin');
+	    	}
+	    };
 	} 
 ]);

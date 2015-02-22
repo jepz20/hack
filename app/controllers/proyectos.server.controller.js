@@ -222,10 +222,15 @@ exports.agregarActualizacion = function (req, res) {
                     message: 'Fallo en la carga de actualizaciones'
                 });
             } else {
-                var actualizacion = [req.body.fecha_actualizacion, req.body.descripcion, ''];
+                var actualizacion = {
+                    fecha_actualizacion: req.body.fecha_actualizacion, 
+                    descripcion: req.body.descripcion, 
+                    imagen: req.body.imagen
+                };
+
                 proyecto.actualizaciones.push(actualizacion);
                 proyecto.save(function() {
-                    res.jsonp('Success: true');
+                    res.jsonp({Success: true});
                 }); 
             }
         }
