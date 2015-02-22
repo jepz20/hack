@@ -73,8 +73,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 		$scope.findOne = function() {
 			$scope.proyecto = Proyectos.get({ 
 				proyectoId: $stateParams.proyectoId
-			}, function() {
-				conso
+			}, function() {				
 				$scope.estadoCalculado = 'Activo';
 				if ($scope.proyecto.monto_requerido <= $scope.proyecto.monto_contribuido ) {
 					$scope.estadoCalculado = 'Concluido';
@@ -116,7 +115,7 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    // redirigir a actualizaciones
 	    $scope.irActualizacion = function() {
 	    	console.log('/proyectos/' + $scope.proyecto._id + '/actualizacion/');
-	    	$location.path('proyectos/' + $scope.proyecto._id + '/actualizacion/');
+	    	$location.path('/proyectos/54e93f2cee53a4dc24193679/actualizacion');
 	    };	
 	} 
 ]);
