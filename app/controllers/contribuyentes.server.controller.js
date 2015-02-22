@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Contribuyente = mongoose.model('Contribuyente'),
 	_ = require('lodash');
+var Proyecto = mongoose.model('Proyecto');
 
 /**
  * Create a Contribuyente
@@ -111,18 +112,30 @@ exports.hasAuthorization = function(req, res, next) {
  */
 exports.agregarProyecto = function(req, res) {
 	Contribuyente.findOne({_id: req.query.contribuyenteId}, function(err, contribuyente) {
-		if (err) throw err;
-
-		contribuyente.proyectos_contribuidos.push(req.query.ProyectoId);
-		contribuyente.save();
-	});
-
-	/*var Proyecto = mongoose.model('Proyecto');
-
-	Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {			
+			contribuyente.proyectos_contribuidos.push(req.query.ProyectoId);
+			contribuyente.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				} else {
+						Proyecto.findOne({_id: req.query.ProyectoId}, function(err, proyecto) {
 		if (err) throw err;
 
 		proyecto.contribuyentes.push(req.query.contribuyenteId);
-		proyecto.save();
-	});*/
+		proyecto.save(function() {
+			
+		});
+	});
+				}			
+			});
+		}
+	});	
+
+
 };

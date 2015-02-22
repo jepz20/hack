@@ -10,7 +10,7 @@ module.exports = function(app) {
 		.post(users.requiresLogin, contribuyentes.create);
 
 	app.route('/contribuyentes/agregarproyecto')
-		.post(contribuyentes.agregarproyecto);
+		.post(contribuyentes.agregarProyecto);
 
 	app.route('/contribuyentes/:contribuyenteId')
 		.get(contribuyentes.read)
