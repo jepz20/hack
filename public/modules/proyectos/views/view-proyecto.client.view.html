@@ -43,9 +43,8 @@
 				{{proyecto.localizacion_texto}}
 			</p><br/>
 			<h4 class="text-info">Materiales y Equipo</h4>
-			<ul ng-repeat="costo in proyectos.costos">
-				<li>{{costo.descripcion_costo}}: L {{costo.monto_costo}}</li>
-			</ul>
+			<p ng-repeat="costo in proyecto.costos"> {{costo.descripcion_costo}}: L {{costo.monto_costo}}
+			</p>
 			<!--p> -Concreto/Hormigón armado"</p>
 			<p> -Madera de construcción</p>
 			<p> -Materiales biológicos</p>
