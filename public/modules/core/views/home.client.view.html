@@ -18,9 +18,9 @@
     </div>
     <div ng-show="contribuyente.proyectos_contribuidos">    
     <h2> Proyectos a los que has contribuido </h2>
-	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="cursor:pointer; height:470px" ng-repeat="proyecto in contribuyente.proyectos_contribuidos" ng-click="ir($index)">
+	<div class="container col-xs-6 col-sm-3 col-md-2 col-lg-4" style="height:470px" ng-repeat="proyecto in contribuyente.proyectos_contribuidos" ng-click="ir($index)">
 
-		<table class="table table-bordered">
+		<table class="table table-bordered" style="cursor:pointer">
 			<tr>
 				<td>
 					<form action="">					

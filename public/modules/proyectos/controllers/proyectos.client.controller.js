@@ -90,8 +90,11 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 						proyectoId: proyecto._id
 					}).then(function(res){
 						$scope.respuestaAgregado = 'Guardado exitosamente';						
+						console.log($scope.respuestaAgregado);
+						$location.path('/');
 					}, function(err){
 						$scope.respuestaAgregado = err.data.message;
+						console.log($scope.respuestaAgregado);
 					});
 				} else {
 					$location.path('/signin');
@@ -134,5 +137,5 @@ angular.module('proyectos').controller('ProyectosController', ['$scope', '$state
 	    		$location.path('/signin');
 	    	}
 	    };
-	} 
+	}
 ]);
